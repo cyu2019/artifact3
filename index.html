@@ -86,31 +86,12 @@ li a:hover {
 
 <main>
 	<div id="poem">
-		<p>
-			Whose woods these are I think I know.   <br/>
-			His house is in the village though;   <br/>
-			He will not see me stopping here   <br/>
-			To watch his woods fill up with snow.   <br/>
-		</p>
-		<p>
-			My little horse must think it queer   <br/>
-			To stop without a farmhouse near   <br/>
-			Between the woods and frozen lake   <br/>
-			The darkest evening of the year.   <br/>
-		</p>
-		<p>
-			He gives his harness bells a shake   <br/>
-			To ask if there is some mistake.   <br/>
-			The only other sound’s the sweep   <br/>
-			Of easy wind and downy flake.   <br/>
-		</p>
-		<p>
-			The woods are lovely, dark and deep,   <br/>
-			But I have promises to keep,   <br/>
-			And miles to go before I sleep,   <br/>
-			And miles to go before I sleep.<br/>
-		</p>
-
+		<select id="poem-select">
+			<option value=6>Even Tide Poem 6</option>
+			<option value=10>Even Tide Poem 10</option>
+			<option value=12>Even Tide Poem 12</option>
+		</select>
+		<span id="poemtext"></span>
 	</div>
 	<div id="image-box">
 		<p id="curtext"></p>
@@ -121,6 +102,99 @@ li a:hover {
 
 
 <script>
+
+document.getElementById("poem-select").addEventListener("change",(e) => {
+	loadPoem(e.target.value);
+});
+
+var poem6 = `
+<p>
+A load of grain,<br/>
+Wheat heavy in a huge<br/>
+Wagon, pneumatic strain<br/>
+Of tires flattened on the grass;<br/>
+</p>
+<p>
+Beside a pile<br/>
+Of cinders carried here in a coal bucket,<br/>
+In a while<br/>
+Scattered ash, stands a wagon<br/>
+</p>
+<p>
+Heaped with a mine<br/>
+Of the beaded fire that we, years younger,<br/>
+With the help of wine,<br/>
+Pulled from there to the insides of one another.<br/>
+</p>
+`
+
+var poem10 = `
+<p>
+Why wade?<br/>
+Wit whoah, Didi?<br/>
+Witty Whitey<br/>
+Wee wood<br/>
+Woe weed<br/>
+A whee ah<br/>
+Wide weighed wade(And rhyming with load)<br/>
+Ah woda wode?<br/>
+Would you could if you wanted to be?<br/>
+That's your signature?<br/>
+(Billowy clouds above a ragged sea above which is a tipped mast.)<br/>
+What do you do? No,<br/>
+I won't take a personal check.<br/>
+</p>
+<p>
+Oh.<br/>
+well, it's wi-wood-e (with an ending long E)<br/>
+In the fmaily's pronunciation, that word;<br/>
+You've robbed me of the syllable of<br/>
+Antiquity,<br/>
+The horses' hooves at a gallop, the flashing<br/>
+Axes, the night stamp that makes the name home for me. Woiwode.<br/>
+You'd be as surprised as I, I bet, sir, to see that in Webster's Third.<br/>
+</p>
+`
+
+var poem12 = `
+<p>
+A shaggy chrysanthemum, clumsy flower, like the pinwheel<br/>
+That spun on its stick at Coney Island, raggedly humming <i>Mine.</i><br/>
+Yours beside it. Wind.<br/>
+Both motionless, rolled-back petals crushed up against a spine<br/>
+Pricked by a pin.<br/>
+Between their whitish stare, a broad leaf's a spire<br/>
+Against the pale blue of the wall, a place for the eye<br/>
+To reconnoiter. The plastic pitcher you use,<br/>
+Freckled with copper-metallic flakes, translucent,<br/>
+Tall, intended to contain<br/>
+The transformation<br/>
+You aspire to, appears to open<br/>
+Along its length nad lets leaves <br/>
+Spill down toward your parting hand;<br/>
+They're held away from the dresser top,<br/>
+The floor, by three pinkish wild-rose<br/>
+Knots (no, four) and clinging ferns<br/>
+That tremble from your strings and<br/>
+Skeins of distinction, where,<br/>
+Between a pair of buds, andIn spite of them, air<br/>
+Pirouettes<br/>
+(You rise to this occasion),<br/>
+And is stabbed through wire with a stem.<br/>
+</p>
+
+`
+function loadPoem(n){
+	if (n == 6) {
+		document.getElementById("poemtext").innerHTML = poem6;
+	} else if (n == 10) {
+		document.getElementById("poemtext").innerHTML = poem10;
+	} else if (n == 12) {
+		document.getElementById("poemtext").innerHTML = poem12;
+	}
+}
+
+loadPoem(6);
 
 function genImage(text) {
 	var xhr = new XMLHttpRequest();
