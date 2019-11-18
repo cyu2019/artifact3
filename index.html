@@ -1,0 +1,155 @@
+<title>
+Larry Woiwode Public Poetry
+</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<style>
+body, html {
+	padding:0;
+	margin:0;
+	font-family: 'Roboto', sans-serif;
+	font-size:20px;
+}
+.brand {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-weight:bold;
+}
+::selection {
+    background-color: #4CAF50;
+    color: white;
+}
+main {
+	display:flex;
+	justify-content: space-around;
+}
+#poem {
+	width:45%;
+	padding:20px;
+}
+#curtext {
+	font-style: italic;
+}
+#image-box {
+	width:45%;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	text-align:center;
+}
+#render {
+	width: 80%;
+	box-shadow: #4CAF50 0px 0px 10px
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #383;
+  box-shadow: #030 0 0 10px;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition:background-color,0.3s;
+}
+
+li a:hover {
+  background-color: #4CAF50;
+}
+#portrait {
+	width:35%;
+}
+#portrait img {
+	width:100%;
+}
+</style>
+
+<ul>
+  <li class="brand">Larry Woiwode Public Poetry</li>
+  <li><a href="/">Main</a></li>
+  <li><a href="/howto">How to Use</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+<main>
+	<div id="poem">
+		<p>
+			Whose woods these are I think I know.   <br/>
+			His house is in the village though;   <br/>
+			He will not see me stopping here   <br/>
+			To watch his woods fill up with snow.   <br/>
+		</p>
+		<p>
+			My little horse must think it queer   <br/>
+			To stop without a farmhouse near   <br/>
+			Between the woods and frozen lake   <br/>
+			The darkest evening of the year.   <br/>
+		</p>
+		<p>
+			He gives his harness bells a shake   <br/>
+			To ask if there is some mistake.   <br/>
+			The only other sound’s the sweep   <br/>
+			Of easy wind and downy flake.   <br/>
+		</p>
+		<p>
+			The woods are lovely, dark and deep,   <br/>
+			But I have promises to keep,   <br/>
+			And miles to go before I sleep,   <br/>
+			And miles to go before I sleep.<br/>
+		</p>
+
+	</div>
+	<div id="image-box">
+		<p id="curtext"></p>
+		<img id="render" />
+	</div>
+</main>
+
+
+
+<script>
+
+function genImage(text) {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', "/image?text="+text, true);
+	xhr.onload = function () {
+	  console.log(xhr.responseText);
+	  document.getElementById("curtext").innerHTML = text;
+	  document.getElementById("render").src = xhr.responseText;
+	};
+	xhr.send();
+
+}
+var poemEle = document.getElementById("poem");
+poemEle.addEventListener("mouseup",function(e) {
+	var selectedText = "";
+	
+	if (window.getSelection) {
+		selectedText = window.getSelection();
+	}
+	else if (document.getSelection) {
+		selectedText = document.getSelection();
+	}
+	else if (document.selection) {
+		selectedText = document.selection.createRange().text;
+	}
+
+	if (selectedText) {
+		genImage(selectedText);
+	}
+});
+
+</script>
